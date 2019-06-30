@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+ text-align:center;
+ background:#E0FFFF;
+}
+#canvas{
+  border-radius: 50%;
+  width: 130px;
+  height: 130px;
+
+ 
+}
+input[type="file"]{
+	color:white;
+	background:#00FF7F;
+	border-radius:10%;
+	border: 2px solid white;
+	padding:10px;
+	margin-top:5px;
+	margin-right:5px;
+    width:50%;
+}
+#img{
+    background-image: url('ashi.jpg');
+    height: 440px;
+    width: 440px;
+    max-width: 1920px;
+    background-size:cover;
+    border: 2px solid DodgerBlue;
+    display: block;
+    margin:auto;
+    margin-top:35px;
+    border-radius: 50%;
+    
+}
+#main_content{
+    text-align:center;
+    display: block;
+    margin:13%;
+}
+</style>
+</head>
+<body>
+<input type="file" id="inp"/><br>
+ <div id="img">
+        <div id="main_content">
+         <canvas id="canvas" style="border:1.2px solid transparent; " >
+        </div>
+ </div>
+ <script>
+   document.getElementById('inp').onchange = function(e) {
+   var img = new Image();
+   img.onload = draw;
+   img.onerror = failed;
+   img.src = URL.createObjectURL(this.files[0]);
+  };
+  function draw() {
+   var canvas = document.getElementById('canvas');
+   canvas.width = this.width;
+   canvas.height = this.height;
+   var ctx = canvas.getContext('2d');
+   ctx.drawImage(this,0,0);
+   this.revert(false);
+  }
+  function failed() {
+    console.error("The provided file couldn't be loaded as an Image media");
+  }
+
+ </script>
+ </body>
+</html>
